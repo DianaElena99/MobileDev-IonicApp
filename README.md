@@ -6,3 +6,5 @@
   -- 3. Mark item as read
   -- 4. Offline support
   -- 5. Use cool stuff (external/local services, animations)
+
+# 0,1,2,3,4,5 - To be implemented in a later patch

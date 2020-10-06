@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/main']">
+        <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid id="textutz">
+    <ion-row >
+      Autor : <ion-input  readonly value={{data.autor}}></ion-input>
+    </ion-row>
+    <ion-row >
+      Titlu: <ion-input  readonly value={{data.titlu}}></ion-input>
+    </ion-row>
+    <ion-row >
+      <p> &emsp; Done reading? </p>
+    </ion-row > 
+    <ion-row >  
+      <ion-toggle  color="danger"> </ion-toggle>
+    </ion-row>
+    <ion-row >  
+      <ion-button  color="danger" (click)=saveChanges(data)>Update entry </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

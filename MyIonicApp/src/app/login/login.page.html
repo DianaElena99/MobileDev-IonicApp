@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/']">
+          <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Log In</ion-title>
+    </ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+
+    <ion-item lines="full">
+    <ion-label position="floating">Username</ion-label>
+    <ion-input autocomplete="off" type="text" name="username" [(ngModel)]="postData.username"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input autocomplete="off" type="password" name="password" [(ngModel)]="postData.password"></ion-input>
+    </ion-item>
+    
+
+    <ion-button expand="block" share="round" color="success" (click)="loginAction()">Login</ion-button>
+    </form>
+</ion-content>

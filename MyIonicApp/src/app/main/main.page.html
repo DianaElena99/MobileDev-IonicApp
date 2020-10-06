@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Main Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid id="textutz">
+  <ion-row>
+    <ion-col self-align-center>
+      <p >Welcome to Meowing Potato's first ionic app.<br><br>It's gonna be iconic ^^ </p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+      <ion-item-sliding *ngFor="let item of data">
+          <ion-item >
+            <ion-label>{{item.titlu}}</ion-label> <br>
+         
+            <hr>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary" (click)="edit(item)" expandable>
+              Edit
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
+<ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab-button color="danger" [routerLink]="['/addnew']">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

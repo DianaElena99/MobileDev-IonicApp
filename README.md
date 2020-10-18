@@ -1,10 +1,12 @@
 # Aplicație IONICă<br />
-# Funcționalități / Functionalities<br />
-  -- 0. Login -- d'uh<br />
-  -- 1. Reading List -- show your papers that have to be read<br />
-  -- 2. Add a new item to your list<br />
-  -- 3. Mark item as read<br />
-  -- 4. Offline support<br />
-  -- 5. Use cool stuff (external/local services, animations)<br />
-<br />
-# 0,1,2,3,4,5 - To be implemented in a later patch<br />
+Functionalities - to be implemented in later patches
+
+0. Log in 
+1. Reading List visualization
+2. Add a new item to the reading list
+3. Mark an item as read
+4. Offer offline support
+5. Offer online support - sync data
+6. External service - share your list via gmail
+7. Camera - add a profile pic
+8. Animations 

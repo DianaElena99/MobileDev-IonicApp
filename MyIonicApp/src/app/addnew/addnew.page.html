@@ -1,6 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add an entry</ion-title>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/main']">
+          <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Add a new entry</ion-title>
+    </ion-toolbar>
   </ion-toolbar>
 </ion-header>
 

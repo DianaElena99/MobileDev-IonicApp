@@ -1,6 +1,9 @@
-import { Router,NavigationExtras } from '@angular/router';
+import { Router,ActivatedRoute,NavigationExtras } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Toast } from '@capacitor/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-main',
@@ -8,24 +11,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  /* 0 - in progress / 1 - done*/
-  data = [{titlu:'Cum se face o teza de licenta', autor:'Umberto Eco', status:0}, 
-          {titlu:'Exalare', autor:'Ted Chiang', status:1} ,
-          {titlu:'Omul in cautarea sensului vietii', autor:'Viktor Frankl', status:0} 
-          ]
 
+  data = []
+  user = ""
   constructor(
-    private router: Router
-  ) { }
+    public toastController: ToastController, private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient
+  ) { 
+
+    if(this.router.getCurrentNavigation().extras.state == undefined){
+      this.router.navigate(['/home']);
+    }
+    else{
+      this.user = this.router.getCurrentNavigation().extras.state.id;
+      console.log("User:"+this.user);
+      //let token = this.router.getCurrentNavigation().extras.state.token;
+      
+        this.http.post<any>('http://localhost:3001/items', 
+        {
+          "id":this.user
+        }
+      ).subscribe(data => { 
+        console.log(data);
+        this.data = data;
+      });
+      }
+      
+    
+   
+  };
+
+
 
   ngOnInit() {
-  }
+    
+  };
 
   edit(oItem){
     console.log(oItem);
     let navExtra : NavigationExtras = {
       state:{
-        item:oItem
+        item:oItem,
+        user:this.user
       }
     };
     console.log("Nav extra" , navExtra);

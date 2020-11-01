@@ -13,21 +13,21 @@
 <ion-grid id="textutz">
   <ion-row>
     <ion-col self-align-center>
-      <p >Welcome to Meowing Potato's first ionic app.<br><br>It's gonna be iconic ^^ </p>
+      <p >Welcome to Meowing Potato's app. Here's your reading list<br></p>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col>
+    <ion-col  self-align-center>
       <ion-list>
       <ion-item-sliding *ngFor="let item of data">
           <ion-item >
             <ion-label>{{item.titlu}}</ion-label> <br>
-         
+            <ion-label> by {{item.autor}}</ion-label>
             <hr>
           </ion-item>
           <ion-item-options side="end">
             <ion-item-option color="tertiary" (click)="edit(item)" expandable>
-              Edit
+              Details
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>

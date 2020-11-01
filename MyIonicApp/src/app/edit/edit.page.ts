@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit',
@@ -9,12 +10,18 @@ import { ToastController } from '@ionic/angular';
 })
 
 export class EditPage implements OnInit {
-  data: {autor:'', titlu:'', status:''};
-
-  constructor(public toastController: ToastController, private route: ActivatedRoute, private router: Router) {
-    console.log("Edit page : " + this.router.getCurrentNavigation().extras.state.item.titlu);
+  data: {autor:'', titlu:'', status:'', data:'', nota:''};
+  user = ""
+  id = ""
+  constructor(public toastController: ToastController, private http:HttpClient, private route: ActivatedRoute, private router: Router) { 
+    this.id = this.router.getCurrentNavigation().extras.state.item.id;
+    this.user =this.router.getCurrentNavigation().extras.state.user;
+    console.log("Edit page : " + this.user);
     this.data = this.router.getCurrentNavigation().extras.state.item;
     console.log("Primit : " + this.data);
+    this.http.post<any>('http://localhost:3001/items/' + this.id, {user:this.user}).subscribe(data => {
+      this.data = data;
+    });
   }
 
   async presentToast() {
@@ -28,8 +35,18 @@ export class EditPage implements OnInit {
   }
 
   saveChanges(oItem){
-    this.presentToast();
-  }
+    var mesg = {id:this.id, user:this.user, action:'UPDATE_ENTRY'}
+    
+    var ws = new WebSocket("ws://localhost:3002");
+
+    ws.onopen = () =>{
+
+      ws.send(JSON.stringify(mesg));
+      ws.onmessage = function(msg){
+        console.log(msg.data);
+    }
+    ws.close();
+  }}
 
   ngOnInit() {
   }

@@ -12,10 +12,19 @@
 <ion-content>
   <ion-grid id="textutz">
     <ion-row >
-      Autor : <ion-input  readonly value={{data.autor}}></ion-input>
+      Autor : <ion-label> {{data.autor}}</ion-label>
     </ion-row>
     <ion-row >
-      Titlu: <ion-input  readonly value={{data.titlu}}></ion-input>
+      Titlu: <ion-label>{{data.titlu}}</ion-label>
+    </ion-row>
+    <ion-row >
+      Data adaugarii: {{data.data}}
+    </ion-row>
+    <ion-row >
+      Nota: {{data.nota}}
+    </ion-row>
+    <ion-row>
+      Status: {{data.status}}
     </ion-row>
     <ion-row >
       <p> &emsp; Done reading? </p>

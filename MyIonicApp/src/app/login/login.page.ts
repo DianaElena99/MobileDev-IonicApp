@@ -1,5 +1,6 @@
 import { Router , NavigationExtras} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ToastController } from '@ionic/angular';
 
 import { Component, OnInit } from '@angular/core';
 import { Toast } from '@capacitor/core';
@@ -12,6 +13,7 @@ import { Toast } from '@capacitor/core';
 export class LoginPage implements OnInit {
 
   constructor(
+    public toastController: ToastController,
     private router: Router,
     private http: HttpClient,
   ) {
@@ -28,6 +30,16 @@ export class LoginPage implements OnInit {
     password: ''
     };
 
+
+    async presentToast() {
+      const toast = await this.toastController.create({
+        message: 'Failed Login',
+        duration: 1300,
+        color:"danger",
+        position:"middle"
+      });
+      toast.present();
+    }
 
   validateInputs() {
       let username = this.postData.username.trim();
@@ -47,41 +59,35 @@ export class LoginPage implements OnInit {
       user = this.postData.username.trim();
       passwd = this.postData.password.trim();
 
-      var msg = {user:user, pass:passwd, action:'LOGIN'};
-      var ws = new WebSocket("ws://localhost:3002");
-
-      ws.onopen = () => {
-        //ws.send(user + " " + passwd);
-        ws.onmessage = function(msg){
-          console.log(msg.data);
-        }
-
-        ws.send(JSON.stringify(msg));
-        ws.close();
-      }
-
-      this.http.post<any>('http://localhost:3001/login',
+      this.http.post<any>('http://localhost:3000/login',
               {
                 "user":user,
                 "pass":passwd
-              }
-              ).subscribe(data => {
-              console.log("Data " + data);
-              
-              let info : NavigationExtras = {
-                state:{
-                  "id": data.username
-                }
-              }
-              console.log(info);
-              if (data.username!="")
-                this.router.navigate(['/main'],info)
-              
-            })
+              }).subscribe(
+                data => {
+                  console.log(data.status)
+                  console.log("DATA USER : " + data.user);
+
+                  if (data.user!=""){
+                    let info : NavigationExtras = {
+                      state:{
+                        "id": data.user,
+                        "token": data.token
+                      }
+                    }
+                
+                    this.router.navigate(['/main'],info)
+                    
+                  } 
+                              
+                }, 
+                error =>{
+                  this.presentToast()
+                })
       
     }
     else{
-      this.router.navigate(['/'])
+      this.presentToast()
     }
   }
 

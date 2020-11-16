@@ -13,7 +13,7 @@
 <ion-grid id="textutz">
   <ion-row>
     <ion-col self-align-center>
-      <p >Welcome to Meowing Potato's app. Here's your reading list<br></p>
+      <p >Here's your reading list<br></p>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -22,7 +22,6 @@
       <ion-item-sliding *ngFor="let item of data">
           <ion-item >
             <ion-label>{{item.titlu}}</ion-label> <br>
-            <ion-label> by {{item.autor}}</ion-label>
             <hr>
           </ion-item>
           <ion-item-options side="end">

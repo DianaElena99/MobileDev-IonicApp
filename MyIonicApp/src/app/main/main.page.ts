@@ -28,15 +28,13 @@ export class MainPage implements OnInit {
       console.log("User:"+this.user);
       //let token = this.router.getCurrentNavigation().extras.state.token;
       
-        this.http.post<any>('http://localhost:3001/items', 
-        {
-          "id":this.user
-        }
+        this.http.get<any>('http://localhost:3000/items/' + this.user
+      
       ).subscribe(data => { 
         console.log(data);
         this.data = data;
       });
-      }
+    }
       
     
    
@@ -57,6 +55,6 @@ export class MainPage implements OnInit {
       }
     };
     console.log("Nav extra" , navExtra);
-    this.router.navigate(['/edit'], navExtra);
+    this.router.navigate(['/edit' ], navExtra);
   }
 }

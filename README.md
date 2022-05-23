@@ -1,4 +1,4 @@
-# Aplicație IONICă<br />
+# IONIC App <br />
 Functionalities - to be implemented in later patches
 
 0. Log in 
